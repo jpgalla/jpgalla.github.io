@@ -1,1 +1,75 @@
-Hi!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	   <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+body {
+	background-color: black;
+	font-family: monospace;
+	color: #c0c0c0;
+	margin: 0;
+	padding: 0;
+}
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	padding: 20px;
+}
+a {
+	color: orange;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+.content {
+	margin-left: 20px;
+	width:550px;
+  	white-space:normal;
+}
+h2 {
+	text-align: center;
+	background-color: #202020;
+	margin: 20px 0;
+}
+h1 {
+	margin-top: 0;
+	text-align: center;
+}
+@media (max-width: 768px) {
+	.container {
+		flex-direction: column;
+		align-items: center;
+	}
+	.content {
+		margin-left: 0;
+	}
+	h1, h2 {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+</style>
+</head>
+<body>
+<div class="container">
+	<img src="profile.png" alt="" width="250">
+	<div class="content">
+		<h1>Juan Perez Gallardo</h1>
+		<h2>Cloud Architect | DevOps | SRE</h2>
+		Cloud Architect and DevOps Engineer with 20+ years of experience, including leadership roles as a Tech Lead and managing both cloud and on-premises infrastructures with a focus on network and security.
+		<br /><br />
+		Passionate about contributing to the professional development of team members and fostering a collaborative work environment. 
+		<br /><br />
+		Expertise in delivering scalable cloud architectures across AWS, GCP, and Azure, and implementing CI/CD pipelines and containerization with Docker and Kubernetes.
+		<br /><br />
+		Continuously pursuing growth by staying up-to-date with the latest trends, especially in Artificial Intelligence, and integrating these innovations into solutions that enhance operational efficiency.
+		<br /><br />
+		Certified in AWS, GCP, and Microsoft Azure, with a proven ability to manage hybrid environments and deliver secure, cutting-edge cloud solutions.
+	</div>
+</div>
+</body>
+</html>

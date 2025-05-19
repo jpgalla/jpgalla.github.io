@@ -355,46 +355,53 @@ window.onload = () => {
   "rows": 45
 };
 
-  const cvInteraction = {
-  "commands": [
+const cvInteraction = {
+  commands: [
     "help",
     "fullcv",
     "name",
     "role",
     "contact",
+    "summary",
     "experience",
     "skills",
+    "achievements",
     "projects",
     "education",
     "certifications"
   ],
-  "cvSections": [
+  cvSections: [
     "name",
     "role",
     "contact",
+    "summary",
     "experience",
     "skills",
+    "achievements",
     "projects",
     "education",
     "certifications"
   ],
-  "cv": {
-    "name": [
+  cv: {
+    name: [
       "Juan Perez Gallardo"
     ],
-    "role": [
+    role: [
       "Cloud Architect and DevOps Engineer"
     ],
-	"contact": [
+    contact: [
       "📧 jpgallardo@gmail.com"
     ],
-    "experience": [
-      "SNGULAR - Cloud Architect, DevOps, SRE (2021 - Present)",
-      "Accenture - Cloud Transformation & Architect Associate Manager (2020 - 2021)",
-      "WhiteBearSolutions - Tech Lead & Senior Solution Architect (2006 - 2020)",
-      "Mecalux - System and Network Security Administrator (2003 - 2006)"
+    summary: [
+      "Skilled IT professional with a strong background in technical and leadership roles. Experienced in IT infrastructure, cloud architecture, and DevOps, with proven success designing secure, scalable solutions for blockchain, banking, and healthcare industries. Strategic problem-solver who integrates emerging technologies like AI to drive innovation and operational excellence. Adept Tech Lead who fosters collaboration and continuous learning in multidisciplinary teams, seeking opportunities that enable transformative change through technology."
     ],
-    "skills": [
+    experience: [
+      "SNGULAR – Cloud Architect, DevOps, SRE (2021 – Present)",
+      "Accenture – Cloud Transformation & Architect Associate Manager (2020 – 2021)",
+      "WhiteBearSolutions – Tech Lead & Senior Solution Architect (2006 – 2020)",
+      "Mecalux – System and Network Security Administrator (2003 – 2006)"
+    ],
+    skills: [
       "Cloud Platforms: AWS, GCP, Azure",
       "Programming Languages: Python, Java, Bash",
       "CI/CD Tools: Jenkins, GitHub Actions, GitLab CI/CD",
@@ -405,32 +412,39 @@ window.onload = () => {
       "Problem-Solving and Critical Thinking",
       "Communication and Collaboration"
     ],
-    "projects": [
+    achievements: [
+      "Reduced cloud computing costs by 50% for a high-profile blockchain client by migrating to Kubernetes microservices, CI/CD, and GitOps.",
+      "Achieved CIS, NIST, and OWASP compliance for a major banking client by designing security procedures in Google Cloud.",
+      "Cut deployment time by 40% and improved reliability through automated provisioning with Ansible and Terraform across multi-cloud environments."
+    ],
+    projects: [
       "Reduced cloud computing costs by 50% for a blockchain client with Kubernetes and GitOps.",
       "Ensured compliance with CIS, NIST, and OWASP standards for a banking client on Google Cloud.",
       "Automated infrastructure provisioning and deployment using Ansible and Terraform."
     ],
-    "education": [
-      "Universitat Oberta de Catalunya - Bachelor of Science (B.S.), Computer Engineering",
-      "Tiempos Modernos - CFGS (L5 EQF), Information Systems Management"
+    education: [
+      "Universitat Oberta de Catalunya – Bachelor of Science (B.S.), Computer Engineering",
+      "Tiempos Modernos – CFGS (L5 EQF), Information Systems Management"
     ],
-    "certifications": [
-      "Google Cloud - Professional Google Workspace Administrator (2024)",
-      "Google Cloud - Professional Machine Learning Engineer (2024)",
-      "Google Cloud - Professional Cloud Network Engineer (2024)",
-      "Google Cloud - Professional Cloud Security Engineer (2024)",
-      "Google Cloud - Professional Cloud Architect (2024)",
-      "AWS - Certified Solutions Architect Professional (2023)",
-      "AWS - Certified Solutions Architect Associate (2020)",
-      "AWS - Certified Cloud Practitioner (2020)",
+    certifications: [
+      "Google Cloud – Professional Cloud Database Engineer (2025)",
+      "Google Cloud – Professional Google Workspace Administrator (2024)",
+      "Google Cloud – Professional Machine Learning Engineer (2024)",
+      "Google Cloud – Professional Cloud Network Engineer (2024)",
+      "Google Cloud – Professional Cloud Security Engineer (2024)",
+      "Google Cloud – Professional Cloud Architect (2024)",
+      "AWS – Certified Solutions Architect Professional (2023)",
+      "AWS – Certified Solutions Architect Associate (2020)",
+      "AWS – Certified Cloud Practitioner (2020)",
       "Microsoft AZ-900: Microsoft Azure Fundamentals (2020)",
       "Cisco Certified Network Professional (2020)",
       "Network Security Manager (2020)",
       "IS/IT Project Manager (2020)"
     ]
   },
-  "prompt": "root > "
+  prompt: "root > "
 };
+
 
   const terminalConfigurations = {
     terminal: terminalSettings,

@@ -44,10 +44,13 @@ Original HTML:
 LaTeX content:
 {tex_content[:3000]}
 
-Update the HTML to update the cv in the "const cvInteraction" section preserving the file structure.
-Return the **entire HTML file** updated.
-Do not add explanations, comments, or markdown.
+Update the Original HTML to update the cv preserving the file structure.
 """
+
+print("===== OpenAI Prompt =====")
+print(prompt)
+print("===== End of Prompt =====")
+
 
 # -------------------------------
 # 5. Call OpenAI (modern SDK)

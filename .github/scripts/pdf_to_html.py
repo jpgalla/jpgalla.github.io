@@ -39,10 +39,10 @@ prompt = f"""
 You are given a CV in HTML format and new content extracted from a LaTeX file.
 
 Original HTML:
-{original_html[:3000]}
+{original_html[:6000]}
 
 LaTeX content:
-{tex_content[:3000]}
+{tex_content[:9000]}
 
 Update the Original HTML to update the cv preserving the file structure.
 """

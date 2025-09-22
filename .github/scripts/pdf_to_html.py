@@ -39,12 +39,14 @@ prompt = f"""
 You are given a CV in HTML format and new content extracted from a LaTeX file.
 
 Original HTML:
-{original_html[:6000]}
+
+{original_html}
 
 LaTeX content:
-{tex_content[:9000]}
 
-Update the Original HTML to update the cv preserving the file structure. Do not includo comments or other content thant the html file.
+{tex_content}
+
+Update the Original HTML to update with the latex content preserving the file structure. Do not includo comments or other content thant the html file.
 """
 
 print("===== OpenAI Prompt =====")

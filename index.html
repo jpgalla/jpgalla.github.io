@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -104,17 +105,356 @@
         }
 
         openTerminal(container) {
-            
-        const cvInteraction = {
-            name: "Juan Perez Gallardo",
-            position: "Cloud Architect | DevOps | SRE",
-            mobile: "(+34) 616635351",
-            email: "jpgallardo@gmail.com",
-            homepage: "jpgalla.github.io",
-            github: "jpgalla",
-            linkedin: "juanperezgallardo",
-            extrainfo: "This is my original, generic, CV. Not an AI-generated one tailored to this role."
-        };
+            this.terminal.open(container);
+            this.terminal.focus();
+        }
+
+        writeWelcomeMessage() {
+            this.terminal.writeln("Welcome to My CV!");
+            this.terminal.writeln("Type 'help' to see available commands.");
+            this.writePrompt();
+        }
+
+        initializeProperties() {
+            this.terminal = new Terminal(this.config.terminal);
+            this.isAnimating = false;
+            this.command = "";
+            this.addons = {};
+            this.addonsConfig = this.config.addons;
+            this.prompt = this.config.cv.prompt;
+            this.promptLength = this.prompt.length;
+            this.cursorX = this.promptLength;
+            this.printingFullCV = false;
+            this.interrupted = false;
+            this.commands = new Set(this.config.cv.commands);
+            this.cvSections = new Set(this.config.cv.cvSections);
+            this.cv = this.config.cv.cv;
+            this.currentSectionIndex = 0;
+            this.animationFrameId = -1;
+        }
+
+        installAddons() {
+            this.addons = {};
+            for (const addon of this.addonsConfig) {
+            const addonConstructor = Object.values(addon.instance)[0];
+            const addonInstance = new addonConstructor();
+            this.addons[addon.instance.name] = addonInstance;
+            this.terminal.loadAddon(addonInstance);
+            if (addon.autoFit) {
+                addonInstance.fit();
+            }
+            }
+        }
+
+        registerEvents() {
+            this.terminal.onKey((event) => this.handleKeyEvent(event));
+            window.addEventListener("resize", () => this.fitTerminal());
+
+            document.addEventListener("click", (event) => {
+            const isTerminalClick = event.composedPath().some((el) => el === this.terminal.element);
+            if (isTerminalClick) {
+                this.terminal.focus();
+            } else if (!isTerminalClick) {
+                this.terminal.blur();
+            }
+            });
+        }
+
+        handleKeyEvent({ key, domEvent }) {
+            const isCtrlC = domEvent.ctrlKey && domEvent.key.toLowerCase() === "c";
+            const isPrintable = !domEvent.altKey && !domEvent.ctrlKey && !domEvent.metaKey;
+
+            const KEYCODE = {
+            Backspace: "Backspace",
+            Enter: "Enter",
+            ArrowUp: "ArrowUp",
+            ArrowDown: "ArrowDown",
+            ArrowLeft: "ArrowLeft",
+            ArrowRight: "ArrowRight",
+            };
+
+            if (this.isAnimating && isCtrlC) {
+            return this.interruptAnimation();
+            }
+            if (this.isAnimating) return;
+
+            switch (domEvent.key) {
+            case KEYCODE.Backspace:
+                this.handleBackspace();
+                break;
+            case KEYCODE.Enter:
+                this.handleReturn();
+                break;
+            case KEYCODE.ArrowUp:
+            case KEYCODE.ArrowDown:
+            case KEYCODE.ArrowLeft:
+            case KEYCODE.ArrowRight:
+                break;
+            default:
+                if (isPrintable) {
+                this.handleInput(key);
+                }
+            }
+        }
+
+        stopAnimation() {
+            this.interrupted = false;
+            this.isAnimating = false;
+            cancelAnimationFrame(this.animationFrameId);
+            this.resetFullCV();
+        }
+
+        handleBackspace() {
+            if (this.cursorX > this.promptLength) {
+            this.terminal.write("\b \b");
+            this.cursorX--;
+            }
+        }
+
+        handleReturn() {
+            this.terminal.writeln("");
+            this.handleCommand();
+            this.command = "";
+            this.cursorX = this.promptLength;
+            if (!this.isAnimating) {
+            this.writePrompt();
+            }
+        }
+
+        handleInput(key) {
+            this.terminal.write(key);
+            this.command += key;
+            this.cursorX++;
+        }
+
+        writePrompt() {
+            this.terminal.write(this.prompt);
+        }
+
+        handleCommand() {
+            const trimmedCommand = this.command.trim();
+
+            if (this.commands.has(trimmedCommand)) {
+            switch (trimmedCommand) {
+                case "help":
+                this.writeHelp();
+                break;
+                case "fullcv":
+                this.startFullCV();
+                break;
+                default:
+                this.writeSection(trimmedCommand);
+            }
+            } else {
+            this.terminal.writeln("💡 Command not recognized: " + trimmedCommand + "!");
+            this.terminal.writeln("Type 'help' to see available commands.");
+            }
+        }
+
+        writeHelp() {
+            let helpText = "\n  AVAILABLE COMMANDS:\n\n";
+            for (const cmd of this.commands) {
+            helpText += "- " + cmd + "\n";
+            }
+
+            this.isAnimating = true;
+            this.animateTyping(helpText, 0, () => {
+            this.isAnimating = false;
+            this.writePrompt();
+            });
+        }
+
+        startFullCV() {
+            this.printingFullCV = true;
+            this.handleFullCVCommand();
+        }
+
+        writeSection(sectionName) {
+            const section = "\n  " + sectionName.toUpperCase();
+            this.terminal.writeln(section);
+            const commandInfo = "\r\n" + this.cv[sectionName].join('\n');
+
+            if (this.interrupted) return;
+
+            this.isAnimating = true;
+            this.animateTyping(commandInfo, 0, () => {
+            this.isAnimating = false;
+            if (this.printingFullCV) {
+                this.handleFullCVCommand();
+            } else {
+                this.writePrompt();
+            }
+            });
+        }
+
+        handleFullCVCommand() {
+            const cvSectionsArray = Array.from(this.cvSections);
+
+            if (this.currentSectionIndex >= cvSectionsArray.length) {
+            this.resetFullCV();
+            this.writePrompt();
+            } else {
+            this.printingFullCV = true;
+            const command = cvSectionsArray[this.currentSectionIndex];
+            this.currentSectionIndex++;
+            this.writeSection(command);
+            }
+        }
+
+        resetFullCV() {
+            this.currentSectionIndex = 0;
+            this.printingFullCV = false;
+        }
+
+        animateTyping(text, pos, callback) {
+            if (this.interrupted) {
+            return this.stopAnimation();
+            }
+
+            if (pos < text.length) {
+            this.terminal.write(text.charAt(pos));
+            if (text.charAt(pos) === "\n") {
+                this.terminal.write("\r");
+            }
+            this.animationFrameId = requestAnimationFrame(() =>
+                this.animateTyping(text, pos + 1, callback)
+            );
+            } else {
+            this.terminal.writeln("\r");
+            this.isAnimating = false;
+            callback && callback();
+            }
+        }
+
+        interruptAnimation() {
+            this.stopAnimation();
+            this.terminal.write("\r\n\nInterrupted\r\n\n");
+            this.writePrompt();
+        }
+    }
+
+// Initialize the terminal 
+window.onload = () => {
+     
+  const addonsConfig = [
+    { instance: FitAddon, autoFit: true },
+    { instance: WebLinksAddon },
+  ];
+
+  const terminalSettings = {
+  "fontSize": 12,
+  "fontFamily": "'JetBrains Mono', monospace",
+  "cursorStyle": "block",
+  "cursorBlink": true,
+  "theme": {
+    "background": "#16213e",
+    "foreground": "#87c9a7ff",
+    "cursor": "#486148ff"
+  },
+  "cols": 111,
+  "rows": 45
+};
+
+const cvInteraction = {
+  commands: [
+    "help",
+    "fullcv",
+    "name",
+    "role",
+    "contact",
+    "summary",
+    "experience",
+    "skills",
+    "achievements",
+    "projects",
+    "education",
+    "certifications"
+  ],
+  cvSections: [
+    "name",
+    "role",
+    "contact",
+    "summary",
+    "experience",
+    "skills",
+    "achievements",
+    "projects",
+    "education",
+    "certifications"
+  ],
+  cv: {
+    name: [
+      "Juan Perez Gallardo"
+    ],
+    role: [
+      "Cloud Architect and DevOps Engineer"
+    ],
+    contact: [
+      "📧 jpgallardo@gmail.com"
+    ],
+    summary: [
+      "Skilled IT professional with a strong background in technical and leadership roles. Experienced in IT infrastructure, cloud architecture, and DevOps, with proven success designing secure, scalable solutions for blockchain, banking, and healthcare industries. Strategic problem-solver who integrates emerging technologies like AI to drive innovation and operational excellence. Adept Tech Lead who fosters collaboration and continuous learning in multidisciplinary teams, seeking opportunities that enable transformative change through technology."
+    ],
+    experience: [
+      "SNGULAR – Cloud Architect, DevOps, SRE (2021 – Present)",
+      "Accenture – Cloud Transformation & Architect Associate Manager (2020 – 2021)",
+      "WhiteBearSolutions – Tech Lead & Senior Solution Architect (2006 – 2020)",
+      "Mecalux – System and Network Security Administrator (2003 – 2006)"
+    ],
+    skills: [
+      "Cloud Platforms: AWS, GCP, Azure",
+      "Programming Languages: Python, Java, Bash",
+      "CI/CD Tools: Jenkins, GitHub Actions, GitLab CI/CD",
+      "Containerization: Kubernetes, Docker, Helm, FluxCD, ArgoCD",
+      "Infrastructure as Code: Terraform, Ansible",
+      "Monitoring Tools: Prometheus, Grafana, Loki",
+      "Leadership and Team Management",
+      "Problem-Solving and Critical Thinking",
+      "Communication and Collaboration"
+    ],
+    achievements: [
+      "Reduced cloud computing costs by 50% for a high-profile blockchain client by migrating to Kubernetes microservices, CI/CD, and GitOps.",
+      "Achieved CIS, NIST, and OWASP compliance for a major banking client by designing security procedures in Google Cloud.",
+      "Cut deployment time by 40% and improved reliability through automated provisioning with Ansible and Terraform across multi-cloud environments."
+    ],
+    projects: [
+      "Reduced cloud computing costs by 50% for a blockchain client with Kubernetes and GitOps.",
+      "Ensured compliance with CIS, NIST, and OWASP standards for a banking client on Google Cloud.",
+      "Automated infrastructure provisioning and deployment using Ansible and Terraform."
+    ],
+    education: [
+      "Universitat Oberta de Catalunya – Bachelor of Science (B.S.), Computer Engineering",
+      "Tiempos Modernos – CFGS (L5 EQF), Information Systems Management"
+    ],
+    certifications: [
+      "Google Cloud – Professional Cloud Database Engineer (2025)",
+      "Google Cloud – Professional Google Workspace Administrator (2024)",
+      "Google Cloud – Professional Machine Learning Engineer (2024)",
+      "Google Cloud – Professional Cloud Network Engineer (2024)",
+      "Google Cloud – Professional Cloud Security Engineer (2024)",
+      "Google Cloud – Professional Cloud Architect (2024)",
+      "AWS – Certified Solutions Architect Professional (2023)",
+      "AWS – Certified Solutions Architect Associate (2020)",
+      "AWS – Certified Cloud Practitioner (2020)",
+      "Microsoft AZ-900: Microsoft Azure Fundamentals (2020)",
+      "Cisco Certified Network Professional (2020)",
+      "Network Security Manager (2020)",
+      "IS/IT Project Manager (2020)"
+    ]
+  },
+  prompt: "root > "
+};
+
+
+  const terminalConfigurations = {
+    terminal: terminalSettings,
+    cv: cvInteraction,
+    addons: addonsConfig,
+    container: document.querySelector("#terminal"),
+    };
+  
+    new CVTerminal(terminalConfigurations);
+}
     </script>
     </body>
 </html>

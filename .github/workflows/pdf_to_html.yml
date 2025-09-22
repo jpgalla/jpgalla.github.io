@@ -35,7 +35,7 @@ jobs:
         run: |
           git config --global user.name "jpgalla"
           git config --global user.email "jpgallardo@gmail.com"
-          git add cv.html
+          git add docs/juan_perez_cv.pdf
           git commit -m "Update cvInteraction section from PDF" || echo "No changes to commit"
           git push origin HEAD:${{ github.head_ref }}
 

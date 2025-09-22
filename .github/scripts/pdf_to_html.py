@@ -2,7 +2,7 @@ import sys
 import os
 import re
 from PyPDF2 import PdfReader
-from openai import OpenAI
+import openai
 
 # -------------------------------
 # 0. Load OpenAI API key from environment
@@ -11,8 +11,6 @@ openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
     print("Error: OPENAI_API_KEY not set in environment")
     sys.exit(1)
-
-client = OpenAI(api_key=openai_api_key)
 
 # -------------------------------
 # 1. Parse command line arguments
@@ -35,7 +33,7 @@ text = "\n".join([page.extract_text() for page in reader.pages if page.extract_t
 # -------------------------------
 prompt = f"""
 You are given the text extracted from a PDF file. 
-Using this text, generate **HTML content** that should repupdate  
+Using this text, generate **HTML content** that should update 
 the content inside the "const cvInteraction" section 
 of an existing CV HTML file.
 
@@ -46,6 +44,8 @@ PDF text:
 # -------------------------------
 # 4. Call OpenAI Chat Completions (new API >=1.0.0)
 # -------------------------------
+client = openai.OpenAI(api_key=openai_api_key)
+
 response = client.chat.completions.create(
     model="gpt-4o-mini",
     messages=[

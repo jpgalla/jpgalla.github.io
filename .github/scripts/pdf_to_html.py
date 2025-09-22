@@ -44,8 +44,8 @@ Original HTML:
 LaTeX content:
 {tex_content[:3000]}
 
-Update the HTML to incorporate the LaTeX content in the "const cvInteraction" section.
-Return the **entire HTML file** updated, not just the snippet.
+Update the HTML to update the cv in the "const cvInteraction" section preserving the file structure.
+Return the **entire HTML file** updated.
 Do not add explanations, comments, or markdown.
 """
 
@@ -55,9 +55,9 @@ Do not add explanations, comments, or markdown.
 client = openai.OpenAI(api_key=openai_api_key)
 
 response = client.chat.completions.create(
-    model="gpt-4o-mini",
+    model="gpt-5",
     messages=[
-        {"role": "system", "content": "You are an expert in writing professional CVs in HTML format."},
+        {"role": "system", "content": "You are an expert in writing professional CVs."},
         {"role": "user", "content": prompt}
     ],
     temperature=0

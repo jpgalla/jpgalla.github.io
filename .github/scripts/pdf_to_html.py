@@ -44,7 +44,7 @@ Original HTML:
 LaTeX content:
 {tex_content[:9000]}
 
-Update the Original HTML to update the cv preserving the file structure.
+Update the Original HTML to update the cv preserving the file structure. Do not includo comments or other content thant the html file.
 """
 
 print("===== OpenAI Prompt =====")

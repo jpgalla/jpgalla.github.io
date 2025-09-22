@@ -1,11 +1,10 @@
 import sys
 import os
-import re
 from PyPDF2 import PdfReader
 import openai
 
 # -------------------------------
-# 0. Load OpenAI API key from environment
+# 0. Load OpenAI API key
 # -------------------------------
 openai_api_key = os.getenv("OPENAI_API_KEY")
 if not openai_api_key:
@@ -29,20 +28,30 @@ reader = PdfReader(pdf_file)
 text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
 
 # -------------------------------
-# 3. Build prompt for OpenAI
+# 3. Read original HTML file
+# -------------------------------
+with open(html_file, "r", encoding="utf-8") as f:
+    original_html = f.read()
+
+# -------------------------------
+# 4. Build prompt for OpenAI
 # -------------------------------
 prompt = f"""
-You are given the text extracted from a PDF file. 
-Using this text, generate **HTML content** that should update 
-the content inside the "const cvInteraction" section 
-of an existing CV HTML file.
+You are given a CV in HTML format and new content extracted from a PDF file.
+
+Original HTML:
+{original_html[:3000]}
 
 PDF text:
 {text[:3000]}
+
+Update the HTML to update the PDF content in the "const cvInteraction" section.
+Return the **entire HTML file** updated, not just the snippet.
+Do not add explanations, comments, or markdown.
 """
 
 # -------------------------------
-# 4. Call OpenAI Chat Completions (new API >=1.0.0)
+# 5. Call OpenAI (modern SDK)
 # -------------------------------
 client = openai.OpenAI(api_key=openai_api_key)
 
@@ -55,25 +64,13 @@ response = client.chat.completions.create(
     temperature=0
 )
 
-# Extract the generated HTML snippet
-new_section = response.choices[0].message.content.strip()
+# Get the full updated HTML
+updated_html = response.choices[0].message.content.strip()
 
 # -------------------------------
-# 5. Read original HTML
-# -------------------------------
-with open(html_file, "r", encoding="utf-8") as f:
-    html_content = f.read()
-
-# -------------------------------
-# 6. Replace <div id="cvInteraction"> content
-# -------------------------------
-pattern = re.compile(r'(<div id="cvInteraction">)(.*?)(</div>)', re.DOTALL)
-updated_html = re.sub(pattern, r"\1\n" + new_section + r"\n\3", html_content)
-
-# -------------------------------
-# 7. Save updated HTML
+# 6. Write updated HTML back to file
 # -------------------------------
 with open(html_file, "w", encoding="utf-8") as f:
     f.write(updated_html)
 
-print("✅ cvInteraction section updated successfully.")
+print(f"✅ HTML file '{html_file}' updated successfully.")

@@ -1,0 +1,41 @@
+name: PDF to HTML CV Update
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "docs/*.pdf"
+
+jobs:
+  process-pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai PyPDF2
+
+      - name: Update HTML with OpenAI
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python .github/scripts/pdf_to_html.py juan_perez_cv.pdf index.html
+
+      - name: Commit changes to PR branch
+        run: |
+          git config --global user.name "jpgalla"
+          git config --global user.email "jpgallardo@gmail.com"
+          git add cv.html
+          git commit -m "Update cvInteraction section from PDF" || echo "No changes to commit"
+          git push origin HEAD:${{ github.head_ref }}
+

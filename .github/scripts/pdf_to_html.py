@@ -45,8 +45,8 @@ Original HTML:
 PDF text:
 {text[:3000]}
 
-Update the HTML to update the PDF content in the "const cvInteraction" section.
-Return the **entire HTML file** updated, not just the snippet.
+Update the HTML fle with the PDF content in the "const cvInteraction" section, mantaining the original format of the HTML file.
+Return the entire HTML file with the updated section.
 Do not add explanations, comments, or markdown.
 """
 

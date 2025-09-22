@@ -1,0 +1,319 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+% Awesome CV LaTeX Template for CV/Resume
+%
+% This template has been downloaded from:
+% https://github.com/posquit0/Awesome-CV
+%
+% Author:
+% Claud D. Park <posquit0.bj@gmail.com>
+% http://www.posquit0.com
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+%
+
+
+%-------------------------------------------------------------------------------
+% CONFIGURATIONS
+%-------------------------------------------------------------------------------
+% A4 paper size by default, use 'letterpaper' for US letter
+\documentclass[11pt, a4paper]{awesome-cv}
+
+% Configure page margins with geometry
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+
+% Color for highlights
+% Awesome Colors: awesome-emerald, awesome-skyblue, awesome-red, awesome-pink, awesome-orange
+%                 awesome-nephritis, awesome-concrete, awesome-darknight
+\colorlet{awesome}{awesome-wiz}
+% Uncomment if you would like to specify your own color
+% \definecolor{awesome}{HTML}{CA63A8}
+
+% Colors for text
+% Uncomment if you would like to specify your own color
+% \definecolor{darktext}{HTML}{414141}
+% \definecolor{text}{HTML}{333333}
+% \definecolor{graytext}{HTML}{5D5D5D}
+% \definecolor{lighttext}{HTML}{999999}
+% \definecolor{sectiondivider}{HTML}{5D5D5D}
+
+% Set false if you don't want to highlight section with awesome color
+\setbool{acvSectionColorHighlight}{true}
+
+% If you would like to change the social information separator from a pipe (|) to something else
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+
+%-------------------------------------------------------------------------------
+%	PERSONAL INFORMATION
+%	Comment any of the lines below if they are not required
+%-------------------------------------------------------------------------------
+% Available options: circle|rectangle,edge/noedge,left/right
+% \photo{./examples/profile.png}
+\name{Juan Perez}{Gallardo}
+\position{\textit{\textbf{Cloud Architect{\enskip | \enskip}DevOps{\enskip | \enskip}SRE}}}
+%\address{235, World Cup buk-ro, Mapo-gu, Seoul, 03936, Republic of Korea}
+
+\mobile{(+34) 616635351}
+\email{jpgallardo@gmail.com}
+%\dateofbirth{January 1st, 1970}
+\homepage{jpgalla.github.io}
+\github{jpgalla}
+\linkedin{juanperezgallardo}
+% \gitlab{gitlab-id}
+% \stackoverflow{SO-id}{SO-name}
+% \twitter{@twit}
+% \skype{skype-id}
+% \reddit{reddit-id}
+% \medium{medium-id}
+% \kaggle{kaggle-id}
+% \hackerrank{hackerrank-id}
+% \googlescholar{googlescholar-id}{name-to-display}
+%% \firstname and \lastname will be used
+% \googlescholar{googlescholar-id}{}
+\extrainfo{\\This is my original, generic, CV. Not an AI-generated one tailored to this role.}
+%\quote{``Be the change that you want to see in the world."}
+
+%-------------------------------------------------------------------------------
+\begin{document}
+% Print the header with above personal information
+% Give optional argument to change alignment(C: center, L: left, R: right)
+\makecvheader
+
+% Print the footer with 3 arguments(<left>, <center>, <right>)
+% Leave any of these blank if they are not needed
+\makecvfooter
+  {\today}
+  {Juan Perez Gallardo}
+  {\thepage~/~\pageref{LastPage} }
+
+\vspace{-10pt}
+\cvsection{Summary}
+
+\begin{cvparagraph}
+
+Skilled IT professional with a strong background in technical and leadership roles. My career has focused on IT infrastructure, cloud architecture, and DevOps, excelling in the design and implementation of secure, scalable, and efficient solutions tailored to diverse industries such as blockchain, banking, and healthcare.
+
+I bring a strategic approach to solving complex challenges, integrating emerging technologies like Artificial Intelligence to drive innovation and operational excellence. My expertise spans cloud environments, automation, and security, always aligned with industry best practices.
+
+As a Tech Lead, I have successfully guided multidisciplinary teams, fostering collaboration, skill development, and high-performance results. I am deeply committed to continuous learning, ensuring I remain at the forefront of technological advancements.
+
+Looking for opportunities to share my commitment to innovation and excellence, where I can leverage my expertise to tackle strategic challenges and deliver impactful results. My focus is on selecting projects that align with my vision of driving transformative change through technology.
+\end{cvparagraph}
+
+\vspace{-10pt}
+\cvsection{Skills}
+
+\begin{cvparagraph}
+{\scriptsize
+    \begin{minipage}[t]{0.33\textwidth}
+        \begin{itemize}
+            \item Cloud Platforms: AWS, GCP, Azure
+            \item Programming Languages: Python, Java, Bash
+            \item CI/CD Tools: Jenkins, GitHub Actions, GitLab CI/CD
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.33\textwidth}
+        \begin{itemize}
+            \item Containerization: Kubernetes, Docker, Helm, FluxCD, ArgoCD
+            \item Infrastructure as Code: Terraform, Ansible
+            \item Monitoring Tools: Prometheus, Grafana, Loki
+        \end{itemize}
+    \end{minipage}
+    \begin{minipage}[t]{0.33\textwidth}
+        \begin{itemize}
+            \item Leadership and Team Management
+            \item Problem-Solving and Critical Thinking
+            \item Communication and Collaboration
+        \end{itemize}
+    \end{minipage}
+}
+\end{cvparagraph}
+
+\vspace{-10pt}
+\cvsection{Achievements}
+
+\begin{cvparagraph}
+\begin{itemize}
+    \item Reduced cloud computing costs by 50\% for a high-profile blockchain client by transitioning monolithic applications to a Kubernetes-based microservices architecture, implementing CI/CD pipelines, and adopting GitOps practices.
+    \item Ensured compliance with industry standards such as CIS, NIST, and OWASP for a major banking client by designing and implementing robust security management procedures in Google Cloud.
+    \item Streamlined operations across multiple cloud platforms by automating infrastructure provisioning and deployment using Ansible and Terraform, reducing deployment time by 40\% and improving system reliability.
+\end{itemize}
+\end{cvparagraph}
+
+\vspace{-10pt}
+\cvsection{Experience}
+
+\begin{cventries}
+
+	\cventry
+	{Sr. Staff DevOps Engineer} % Job title
+	{Netskope} % Organization
+	{Remote} % Location
+	{2021 - Present
+	} % Date(s)
+	{
+		{Netskope is a global leader in cybersecurity, helping organizations embrace the cloud with confidence. Focused on protecting people and data wherever they go, Netskope combines innovation with a modern vision of security that adapts to today’s digital world. With a strong commitment to performance and trust, it empowers businesses to work safely, freely, and without compromise.
+		}
+	}
+
+	\cventry
+	{Cloud Architect, DevOps, SRE} % Job title
+	{SNGULAR} % Organization
+	{Remote} % Location
+	{2021 - Present
+	} % Date(s)
+	{
+		{Sngular is a global technology and innovation services company specializing in designing and delivering end-to-end digital solutions. With a diverse team of experts, including software developers, UX designers, data scientists, and cloud architects, the company excels in creating tailored solutions for its clients. My primary responsibilities include:
+		\vspace{15pt}
+		\begin{cvitems} % Description(s) of tasks/responsibilities
+		    \item \textbf{Cloud Transformation:} Successfully transitioned monolithic applications to a microservices architecture using Kubernetes and GitOps practices, reducing computing costs by 50\% and improving system stability.
+		    \item \textbf{Security Compliance:} Designed and implemented security procedures for Google Cloud environments, achieving compliance with CIS, NIST, and OWASP standards for a major banking client.
+		    \item \textbf{Infrastructure Automation:} Automated deployment processes using Ansible and Terraform, reducing deployment times by 40\% and enhancing system reliability across AWS and GCP platforms.
+		    \item \textbf{Monitoring Optimization:} Deployed Prometheus and Grafana to improve system observability, resulting in a 30\% improvement in response times for production environments.
+	\end{cvitems}}
+	}
+	
+    \cventry
+    {Cloud Transformation \& Architect Associate Manager} % Job title
+    {Accenture} % Organization
+    {Remote} % Location
+    {2020 - 2021} % Date(s)
+    {
+    	Accenture is a global professional services company specializing in digital transformation, technology consulting, and operations. Operating in over 120 countries, it serves clients across diverse industries, delivering innovative solutions in areas such as cloud computing, artificial intelligence, and cybersecurity. My primary responsibilities include:
+    	\vspace{15pt}
+    	\begin{cvitems} % Description(s) of tasks/responsibilities
+		    \item \textbf{Cloud Migration:} Led the migration of enterprise-level applications to AWS, Azure, and Google Cloud, ensuring minimal downtime and seamless transitions for mission-critical business functions.
+		    \item \textbf{Governance Frameworks:} Developed and implemented governance frameworks aligned with the AWS Well-Architected Framework, enhancing security, reliability, and cost optimization for multi-cloud environments.
+		    \item \textbf{Cost Reduction:} Optimized multi-cloud solutions for cross-cloud compatibility, achieving significant cost savings while maintaining high availability and performance for clients.
+		    \item \textbf{Stakeholder Collaboration:} Partnered with client executives to assess existing infrastructure and design tailored cloud strategies, delivering secure and scalable solutions aligned with business goals.
+    	\end{cvitems}
+    }
+    
+    \cventry
+    {Tech Lead \& Senior Solution Architect} % Job title
+    {WhiteBearSolutions} % Organization
+    {Remote} % Location
+    {2006 - 2020} % Date(s)
+    {
+    	WhiteBearSolutions SL (WBSgo) is a Spanish company specializing in IT solutions for data security, backup, and identity management. Since its inception, WBSgo has been committed to delivering innovative and scalable products designed to meet the unique needs of businesses across various industries. My primary responsibilities include:
+    	\vspace{15pt}
+    	\begin{cvitems} % Description(s) of tasks/responsibilities
+		    \item \textbf{Team Leadership:} Directed the Support and Managed Services team, overseeing 24/7 operations and implementing continuity plans that ensured uninterrupted services for critical clients.
+		    \item \textbf{IT Operations \& Security:} Led strategic initiatives to enhance system reliability, implementing firewall hardening, VPN solutions, and threat management systems (IDS, IPS) to safeguard corporate networks.
+		    \item \textbf{Compliance \& Processes:} Developed and standardized processes in alignment with ISO 20000 and ITIL standards, improving operational efficiency and ensuring service quality.
+		    \item \textbf{Business Continuity:} Designed and implemented comprehensive disaster recovery, availability, and security plans, significantly strengthening business continuity for mission-critical systems.
+		    \item \textbf{Identity Management Solutions:} Delivered advanced identity and access management systems, improving security protocols and access control across enterprise environments.
+    	\end{cvitems}
+    }
+
+    \cventry
+    {System and Network Security Administrator} % Job title
+    {Mecalux} % Organization
+    {Barcelona} % Location
+    {2003 - 2006} % Date(s)
+    {
+    	Mecalux S.L. is a global leader in industrial storage solutions, specializing in the design, manufacturing, and installation of advanced warehouse systems. Established in 1966, the company operates in over 70 countries, providing products such as shelving, automated storage systems, and warehouse management software (WMS). My primary responsibilities include:
+    	\vspace{15pt}
+        \begin{cvitems} % Description(s) of tasks/responsibilities
+		    \item \textbf{Network Security:} Designed and deployed secure communication networks, including encrypted VPN connections, secure routing protocols, and robust firewall configurations to protect critical infrastructure.
+		    \item \textbf{Database Optimization:} Managed Oracle and MySQL databases, improving security and performance through optimized backup, migration, and configuration processes.
+		    \item \textbf{Security Policies:} Developed and enforced security policies for internet access, remote communication, and data transmission, ensuring compliance with industry standards and best practices.
+		    \item \textbf{System Administration:} Oversaw the administration of Unix, Linux, Solaris, and Windows systems, maintaining stability, security, and high availability across diverse environments.
+        \end{cvitems}
+    }
+
+
+\end{cventries}
+
+%\cvsection{Skills}
+%
+%\begin{cvskills}
+%    \cvskill{Cloud Platforms}{AWS, GCP, Azure}
+%    \cvskill{Programming \& Scripting Languages}{Python, C, Bash, Java, PHP, R}
+%    \cvskill{CI/CD Tools}{Jenkins, GitLab CI/CD, Github Actions, Bitbucket Pipelines}
+%    \cvskill{Containerization \& Orchestration}{Kubernetes(EKS,GKE), Docker, Helm, FluxCD}
+%    \cvskill{IaC \& Configuration Management}{Terraform, Ansible}
+%    \cvskill{Monitoring \& Logging Tools}{Prometheus, Grafana, Loki, Nagios, Zabbix, AWS CloudWatch, Google Stackdriver}
+%    \cvskill{Database Management}{SQL Server, MySQL, PostgreSQL, MongoDB, Redis}
+%    \cvskill{Networking \& Security}{Firewall hardening, VPN, Load Balancing, IDS/IPS, Routing, Identity Management, ISO 20000, ITIL, DRP}
+%    \cvskill{Virtualization \& Storage}{VMWare, XenServer, Proxmox, NetApp, ZFS, LVM, BTRFS}
+%    \cvskill{Backup \& Recovery}{Bacula, WBSAirback, NetApp, Native Cloud Backup Services}
+%    \cvskill{Machine Learning \& AI}{Developing and optimizing ML models using TensorFlow, Keras, and PyTorch.}
+%    \cvskill{Python Programming}{Python for ML, data manipulation, and automation.}
+%    \cvskill{Cloud Integration and MLops}{Deployed ML pipelines on GCP}
+%    \cvskill{}{}
+%    \cvskill{Languages}{Spanish (Native), English (B2), French (A1), Catalan (A1)}
+%    \cvskill{}{}
+%    \cvskill{Soft Skills}{Team Leadership}
+%    \cvskill{}{Problem-Solving and Critical Thinking}
+%    \cvskill{}{Communication and Collaboration}
+%    \cvskill{}{Adaptability and Continuous Learning}
+%    \cvskill{}{Strategic Planning and  Decision-Making}
+%    \cvskill{}{Client-Focused Mindset}
+%\end{cvskills}
+
+\vspace{-10pt}
+\cvsection{Education}
+
+\begin{cventries}
+    \cventry
+    {Universitat Oberta de Catalunya} % Degree
+    {Bachelor of Science (B.S.), Computer Engineering} % Institution
+    {Barcelona, Spain} % Location
+    {} % Date(s)
+    {
+        \begin{cvitems}
+            \item {\textbf{Academic Distinctions}: Achieved High Distinction (A+) in courses such as Computer Fundamentals and Graphs and Complexity Theory.}
+            \item {\textbf{Bachelor Thesis}:            
+            \href{http://hdl.handle.net/10609/152174}{Artificial Intelligence Agents in Offensive Security, exploring the use of AI in ethical hacking.}
+            }
+        \end{cvitems}
+    }
+
+    \cventry
+    {Tiempos Modernos} % Degree
+    {CFGS (L5 EQF), Information Systems Management} % Institution
+    {Zaragoza, Spain} % Location
+    {} % Date(s)
+    {
+        \begin{cvitems}
+            \item {\textbf{Specialization}: Focused on Networking, GNU/Linux, and C Programming, with an emphasis on Linux and Unix system libraries.}
+        \end{cvitems}
+    }
+\end{cventries}
+
+\vspace{-10pt}
+\cvsection{Certifications}
+
+\begin{cvhonors}
+
+	\cvhonor{Google Cloud - Professional Cloud Database Engineer}{}{Google}{2025}
+	\cvhonor{Google Cloud - Professional Google Workspace Administrator}{}{Google}{2024}
+	\cvhonor{Google Cloud - Profesional Machine Learning Engineer}{}{Google}{2024}
+	\cvhonor{Google Cloud - Professional Cloud Network Engineer}{}{Google}{2024}
+	\cvhonor{Google Cloud - Professional Cloud Security Engineer}{}{Google}{2024}
+	\cvhonor{Google Cloud - Professional Cloud Architect}{}{Google}{2024}
+    \cvhonor{AWS - Certified Solutions Architect Professional}{}{AWS}{2023}
+	\cvhonor{AWS - Certified Solutions Architect Associate}{}{AWS}{2020}
+	\cvhonor{AWS - Certified Cloud Practitioner}{}{AWS}{2020}
+	\cvhonor{Microsoft AZ-900: Microsoft Azure Fundamentals}{}{Microsoft}{2020}
+	\cvhonor{Cisco Certified Network Professional}{}{Cisco}{2020}
+	\cvhonor{Network Security Manager}{}{COETIC}{2020}
+	\cvhonor{IS/IT Project Manager}{}{CPETIG}{2020}
+\end{cvhonors}
+
+%\input{cv/education.tex}
+%\input{cv/skills.tex}
+%\input{cv/experience.tex}
+%\input{cv/extracurricular.tex}
+%\input{cv/honors.tex}
+%\input{cv/certificates.tex}
+%\input{cv/presentation.tex}
+%\input{cv/writing.tex}
+%\input{cv/committees.tex}
+
+
+%-------------------------------------------------------------------------------
+\end{document}

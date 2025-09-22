@@ -1,6 +1,5 @@
 import sys
 import os
-from PyPDF2 import PdfReader
 import openai
 
 # -------------------------------
@@ -15,17 +14,17 @@ if not openai_api_key:
 # 1. Parse command line arguments
 # -------------------------------
 if len(sys.argv) < 3:
-    print("Usage: pdf_to_html.py <input.pdf> <file.html>")
+    print("Usage: tex_to_html.py <input.tex> <file.html>")
     sys.exit(1)
 
-pdf_file = sys.argv[1]
+tex_file = sys.argv[1]
 html_file = sys.argv[2]
 
 # -------------------------------
-# 2. Extract text from PDF
+# 2. Read .tex file
 # -------------------------------
-reader = PdfReader(pdf_file)
-text = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
+with open(tex_file, "r", encoding="utf-8") as f:
+    tex_content = f.read()
 
 # -------------------------------
 # 3. Read original HTML file
@@ -37,16 +36,16 @@ with open(html_file, "r", encoding="utf-8") as f:
 # 4. Build prompt for OpenAI
 # -------------------------------
 prompt = f"""
-You are given a CV in HTML format and new content extracted from a PDF file.
+You are given a CV in HTML format and new content extracted from a LaTeX file.
 
 Original HTML:
 {original_html[:3000]}
 
-PDF text:
-{text[:3000]}
+LaTeX content:
+{tex_content[:3000]}
 
-Update the HTML fle with the PDF content in the "const cvInteraction" section, mantaining the original format of the HTML file.
-Return the entire HTML file with the updated section.
+Update the HTML to incorporate the LaTeX content in the "const cvInteraction" section.
+Return the **entire HTML file** updated, not just the snippet.
 Do not add explanations, comments, or markdown.
 """
 

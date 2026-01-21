@@ -106,7 +106,7 @@
         }
 
         writeWelcomeMessage() {
-            this.terminal.writeln("Initializing Profile...");
+            this.terminal.writeln("Initializing SRE Kernel...");
             this.terminal.writeln("Welcome to My CV!");
             this.terminal.writeln("Type 'help' to see available commands.");
             this.writePrompt();
@@ -239,6 +239,21 @@
                 case "fullcv":
                 this.startFullCV();
                 break;
+                
+                // --- NUEVO: Implementación de comandos nuevos ---
+                case "clear":
+                    this.terminal.clear();
+                    break;
+                case "pdf":
+                    this.terminal.writeln("📄 Opening PDF version in new tab...");
+                    // IMPORTANTE: Asegúrate de tener un archivo 'cv.pdf' en la misma carpeta
+                    window.open('cv.pdf', '_blank'); 
+                    break;
+                case "sudo":
+                    this.terminal.writeln("🔒 Permission denied: You need a job offer to gain root access! 😉");
+                    break;
+                // -----------------------------------------------
+
                 default:
                 this.writeSection(trimmedCommand);
             }
@@ -356,6 +371,9 @@ const cvInteraction = {
   commands: [
     "help",
     "fullcv",
+    "clear", // NUEVO
+    "pdf",   // NUEVO
+    "sudo",  // NUEVO
     "name",
     "role",
     "contact",

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,11 +5,9 @@
 	<meta http-equiv='expires' content='0'> 
 	<meta http-equiv='pragma' content='no-cache'>
     <title>CV Terminal</title>
-    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to My portfolio and CV presented in an innovative terminal UI. Explore my skills, experience, and projects.">
-    <!-- Stylesheets -->
+    <meta name="description" content="Senior Staff SRE CV presented in a terminal UI.">
     <link rel="stylesheet" href="https://unpkg.com/xterm@5.2.1/css/xterm.css">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
     <style>
@@ -39,13 +36,14 @@
         /* Generated Dynamic CSS Code */
         
     #terminal {
-      background: url('background.jpg') center/cover no-repeat fixed;
+      background: #1a1b26; 
+      background: url('background.jpg') center/cover no-repeat fixed; 
       position: fixed;
       inset: 0;
     }
     .xterm-screen {
       width:855px!important;
-      background: rgba(22, 33, 62, 0.7);
+      background: rgba(22, 33, 62, 0.9);
       backdrop-filter: blur(5px);
       padding: 14px 21px 22px 17px;
       border: 1px solid #478039ff;
@@ -61,13 +59,11 @@
     }
     
     </style>
-    <!-- JavaScript Libraries -->
     <script src="https://unpkg.com/xterm@5.2.1/lib/xterm.js"></script>
     <script src="https://unpkg.com/xterm-addon-fit@0.7.0/lib/xterm-addon-fit.js"></script>
     <script src="https://unpkg.com/xterm-addon-web-links@0.8.0/lib/xterm-addon-web-links.js"></script>
     </head>
     <body>
-    <!-- Terminal UI -->
     <div id="terminal"></div>
 
     <script>
@@ -110,6 +106,7 @@
         }
 
         writeWelcomeMessage() {
+            this.terminal.writeln("Initializing Profile...");
             this.terminal.writeln("Welcome to My CV!");
             this.terminal.writeln("Type 'help' to see available commands.");
             this.writePrompt();
@@ -342,7 +339,7 @@ window.onload = () => {
   ];
 
   const terminalSettings = {
-  "fontSize": 12,
+  "fontSize": 13,
   "fontFamily": "'JetBrains Mono', monospace",
   "cursorStyle": "block",
   "cursorBlink": true,
@@ -351,8 +348,8 @@ window.onload = () => {
     "foreground": "#87c9a7ff",
     "cursor": "#486148ff"
   },
-  "cols": 111,
-  "rows": 45
+  "cols": 100,
+  "rows": 40
 };
 
 const cvInteraction = {
@@ -378,7 +375,6 @@ const cvInteraction = {
     "experience",
     "skills",
     "achievements",
-    "projects",
     "education",
     "certifications"
   ],
@@ -387,62 +383,84 @@ const cvInteraction = {
       "Juan Perez Gallardo"
     ],
     role: [
-      "Cloud Architect and DevOps Engineer"
+      "Senior Staff Site Reliability Engineer (SRE) | Infrastructure Architect"
     ],
     contact: [
       "📧 jpgallardo@gmail.com"
     ],
     summary: [
-      "Skilled IT professional with a strong background in technical and leadership roles. Experienced in IT infrastructure, cloud architecture, and DevOps, with proven success designing secure, scalable solutions for blockchain, banking, and healthcare industries. Strategic problem-solver who integrates emerging technologies like AI to drive innovation and operational excellence. Adept Tech Lead who fosters collaboration and continuous learning in multidisciplinary teams, seeking opportunities that enable transformative change through technology."
+      "Senior Staff SRE and Infrastructure Architect with 20+ years of experience designing secure, resilient, and scalable systems.",
+      "Currently driving engineering strategy for high-stakes greenfield products, focusing on advanced observability and deep integration within proprietary infrastructure.",
+      "Specialized in bridging software engineering with systems internals (Linux, TCP/IP) and modern cloud-native practices."
     ],
     experience: [
-      "SNGULAR – Cloud Architect, DevOps, SRE (2021 – Present)",
-      "Accenture – Cloud Transformation & Architect Associate Manager (2020 – 2021)",
-      "WhiteBearSolutions – Tech Lead & Senior Solution Architect (2006 – 2020)",
-      "Mecalux – System and Network Security Administrator (2003 – 2006)"
+      "--------------------------------------------------",
+      "2025 – Present | NETSKOPE - Sr. Staff DevOps Engineer",
+      " * Orchestrating the integration of new product services into the Netskope NewEdge private cloud.",
+      " * Designing a high-fidelity monitoring ecosystem (Prometheus, Grafana) for latency optimization.",
+      " * Ensuring product stability across diverse operating systems and hardware architectures.",
+      "",
+      "2021 – 2025 | SNGULAR - Cloud Architect, DevOps, SRE",
+      " * Re-engineered legacy monoliths into resilient Kubernetes microservices clusters.",
+      " * Implemented self-healing mechanisms and GitOps workflows (50% cost reduction).",
+      " * Architected idempotent infrastructure using Terraform and Ansible.",
+      "",
+      "2020 – 2021 | ACCENTURE - Cloud Transformation Associate Manager",
+      " * Orchestrated complex migrations of mission-critical applications (AWS/Azure/GCP).",
+      " * Defined reliability standards based on Well-Architected Framework.",
+      " * Led capacity planning and auto-scaling strategies.",
+      "",
+      "2006 – 2020 | WHITEBEARSOLUTIONS - Tech Lead & Senior Solution Architect",
+      " * Engineered Linux-based appliances for Storage, Backup, and Identity Management.",
+      " * Directed 24/7 Managed Services and Incident Management protocols.",
+      " * Performed deep systems engineering: Linux kernel tuning and TCP/IP stack optimization.",
+      "",
+      "2003 – 2006 | MECALUX - System and Network Security Administrator",
+      " * Managed Unix, Solaris, and Linux systems for industrial environments."
     ],
     skills: [
-      "Cloud Platforms: AWS, GCP, Azure",
-      "Programming Languages: Python, Java, Bash",
-      "CI/CD Tools: Jenkins, GitHub Actions, GitLab CI/CD",
-      "Containerization: Kubernetes, Docker, Helm, FluxCD, ArgoCD",
-      "Infrastructure as Code: Terraform, Ansible",
-      "Monitoring Tools: Prometheus, Grafana, Loki",
-      "Leadership and Team Management",
-      "Problem-Solving and Critical Thinking",
-      "Communication and Collaboration"
+      "--------------------------------------------------",
+      "SYSTEMS & NETWORK:",
+      " * Linux Internals, TCP/IP, BGP, Kernel Tuning",
+      " * HPC Basics, Bare Metal, DNS, HTTP/S",
+      "",
+      "CLOUD NATIVE & SRE:",
+      " * Kubernetes (K8s), Helm, Docker",
+      " * GitOps (FluxCD/ArgoCD), Terraform, Ansible",
+      "",
+      "OBSERVABILITY & SECURITY:",
+      " * Prometheus, Grafana, Loki, Distributed Tracing",
+      " * PKI, TLS/SSL, Firewall Hardening, Identity Mgmt (LDAP/SAML)",
+      "",
+      "PROGRAMMING:",
+      " * Python, Bash, C, Java, Distributed Systems Architecture"
     ],
     achievements: [
-      "Reduced cloud computing costs by 50% for a high-profile blockchain client by migrating to Kubernetes microservices, CI/CD, and GitOps.",
-      "Achieved CIS, NIST, and OWASP compliance for a major banking client by designing security procedures in Google Cloud.",
-      "Cut deployment time by 40% and improved reliability through automated provisioning with Ansible and Terraform across multi-cloud environments."
+      " * Re-architected a monolithic blockchain platform into a resilient Kubernetes microservices ecosystem.",
+      " * Designed an automated security compliance framework (CIS, NIST) integrating policy-as-code.",
+      " * Engineered a unified IaC strategy reducing provisioning latency by 40%."
     ],
     projects: [
-      "Reduced cloud computing costs by 50% for a blockchain client with Kubernetes and GitOps.",
-      "Ensured compliance with CIS, NIST, and OWASP standards for a banking client on Google Cloud.",
-      "Automated infrastructure provisioning and deployment using Ansible and Terraform."
+      "Please refer to 'achievements' or 'experience' sections."
     ],
     education: [
-      "Universitat Oberta de Catalunya – Bachelor of Science (B.S.), Computer Engineering",
-      "Tiempos Modernos – CFGS (L5 EQF), Information Systems Management"
+      " * B.S. Computer Engineering | Universitat Oberta de Catalunya",
+      "   (High Distinction in Graph Theory & Complexity Analysis)",
+      "",
+      " * Associate Degree Systems Admin | Tiempos Modernos",
+      "   (Specialization in C Programming & Linux Internals)"
     ],
     certifications: [
-      "Google Cloud – Professional Cloud Database Engineer (2025)",
-      "Google Cloud – Professional Google Workspace Administrator (2024)",
-      "Google Cloud – Professional Machine Learning Engineer (2024)",
-      "Google Cloud – Professional Cloud Network Engineer (2024)",
-      "Google Cloud – Professional Cloud Security Engineer (2024)",
-      "Google Cloud – Professional Cloud Architect (2024)",
-      "AWS – Certified Solutions Architect Professional (2023)",
-      "AWS – Certified Solutions Architect Associate (2020)",
-      "AWS – Certified Cloud Practitioner (2020)",
-      "Microsoft AZ-900: Microsoft Azure Fundamentals (2020)",
-      "Cisco Certified Network Professional (2020)",
-      "Network Security Manager (2020)",
-      "IS/IT Project Manager (2020)"
+      " * Google Cloud - Professional Cloud Database Engineer (2025)",
+      " * Google Cloud - Professional Machine Learning Engineer (2024)",
+      " * Google Cloud - Professional Cloud Network Engineer (2024)",
+      " * Google Cloud - Professional Cloud Security Engineer (2024)",
+      " * Google Cloud - Professional Cloud Architect (2024)",
+      " * AWS - Certified Solutions Architect Professional (2023)",
+      " * Cisco Certified Network Professional (CCNP) (2020)"
     ]
   },
-  prompt: "root > "
+  prompt: "sre@cvterminal:~$ "
 };
 
 
@@ -452,10 +470,9 @@ const cvInteraction = {
     addons: addonsConfig,
     container: document.querySelector("#terminal"),
     };
-  
+   
     new CVTerminal(terminalConfigurations);
 }
     </script>
     </body>
 </html>
-  

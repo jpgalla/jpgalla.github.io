@@ -205,6 +205,7 @@
             if (this.cursorX > this.promptLength) {
             this.terminal.write("\b \b");
             this.cursorX--;
+            this.command = this.command.slice(0, -1);
             }
         }
 
@@ -250,7 +251,7 @@
                     window.open('cv.pdf', '_blank'); 
                     break;
                 case "sudo":
-                    this.terminal.writeln("🔒 Permission denied: You need a job offer to gain root access! 😉");
+                    this.terminal.writeln("🔒 Permission denied: You need a good job offer to gain root access! 😉");
                     break;
                 // -----------------------------------------------
 
@@ -371,9 +372,9 @@ const cvInteraction = {
   commands: [
     "help",
     "fullcv",
-    "clear", // NUEVO
-    "pdf",   // NUEVO
-    "sudo",  // NUEVO
+    "clear",
+    "pdf",
+    "sudo",
     "name",
     "role",
     "contact",
